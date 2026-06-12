@@ -1,0 +1,27 @@
+[
+    {
+        "user_msg": "how are you today",
+        "bot_msg": "My name is ChatBot Assistant Pro. I'm a virtual assistant designed to answer your questions and help you out!",
+        "timestamp": "12:48 PM"
+    },
+    {
+        "user_msg": "hi",
+        "bot_msg": "Hello! How can I help you today?",
+        "timestamp": "01:26 PM"
+    },
+    {
+        "user_msg": "today i am not fine about doing somethings",
+        "bot_msg": "CODTECH IT SOLUTIONS provides great internship opportunities. This chatbot is a professional deliverable demonstrating skills in Python, Flask, and web development.",
+        "timestamp": "01:26 PM"
+    },
+    {
+        "user_msg": "ok tell be the detalise",
+        "bot_msg": "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions.",
+        "timestamp": "01:27 PM"
+    },
+    {
+        "user_msg": "ok thanks bye",
+        "bot_msg": "You're welcome!",
+        "timestamp": "01:27 PM"
+    }
+]

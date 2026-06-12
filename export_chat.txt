@@ -1,0 +1,18 @@
+ChatBot Assistant Pro - Conversation History
+=============================================
+
+[12:48 PM] User: how are you today
+[12:48 PM] Bot: My name is ChatBot Assistant Pro. I'm a virtual assistant designed to answer your questions and help you out!
+------------------------------
+[01:26 PM] User: hi
+[01:26 PM] Bot: Hello! How can I help you today?
+------------------------------
+[01:26 PM] User: today i am not fine about doing somethings
+[01:26 PM] Bot: CODTECH IT SOLUTIONS provides great internship opportunities. This chatbot is a professional deliverable demonstrating skills in Python, Flask, and web development.
+------------------------------
+[01:27 PM] User: ok tell be the detalise
+[01:27 PM] Bot: Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions.
+------------------------------
+[01:27 PM] User: ok thanks bye
+[01:27 PM] Bot: You're welcome!
+------------------------------

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot Assistant Pro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen d-flex flex-column align-items-center justify-content-center">
+        <div class="loader-avatar mb-3">
+            <i class="fa-solid fa-robot text-primary" style="font-size: 4rem;"></i>
+        </div>
+        <h3 class="fw-bold text-gradient">Loading Assistant Pro...</h3>
+        <div class="spinner-border text-primary mt-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="app-container d-flex" style="display: none !important;" id="mainApp">
+
+        <!-- Sidebar -->
+        <div class="sidebar glass-panel d-flex flex-column" id="sidebar">
+            <div class="sidebar-header d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0 fw-bold d-flex align-items-center">
+                    <i class="fa-solid fa-robot text-primary fs-3 me-2"></i>
+                    Assistant Pro
+                </h5>
+                <button class="btn btn-sm text-secondary d-md-none" id="closeSidebar">
+                    <i class="fa-solid fa-times fs-5"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content flex-grow-1 overflow-y-auto custom-scrollbar">
+
+                <!-- Navigation Links -->
+                <div class="nav-links mb-4">
+                    <h6 class="text-uppercase text-muted fs-7 fw-bold mb-3 ms-2">Menu</h6>
+                    <button class="btn w-100 btn-outline-primary mb-2 text-start sidebar-btn nav-btn active"
+                        data-target="view-chat">
+                        <i class="fa-solid fa-message me-2"></i> Chat
+                    </button>
+                    <button class="btn w-100 btn-outline-info mb-2 text-start sidebar-btn nav-btn"
+                        data-target="view-analytics">
+                        <i class="fa-solid fa-chart-pie me-2"></i> Analytics
+                    </button>
+                    <button class="btn w-100 btn-outline-success mb-2 text-start sidebar-btn nav-btn"
+                        data-target="view-export">
+                        <i class="fa-solid fa-file-export me-2"></i> Export Center
+                    </button>
+                    <button class="btn w-100 btn-outline-secondary mb-2 text-start sidebar-btn" data-bs-toggle="modal"
+                        data-bs-target="#aboutModal">
+                        <i class="fa-solid fa-circle-info me-2"></i> About Project
+                    </button>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls-section mb-4">
+                    <h6 class="text-uppercase text-muted fs-7 fw-bold mb-3 ms-2">Settings</h6>
+                    <button class="btn w-100 btn-outline-secondary mb-2 text-start sidebar-btn" id="themeToggle">
+                        <i class="fa-solid fa-moon me-2" id="themeIcon"></i> Toggle Theme
+                    </button>
+                    <button class="btn w-100 btn-outline-danger mb-2 text-start sidebar-btn" id="clearBtn">
+                        <i class="fa-solid fa-trash me-2"></i> Clear History
+                    </button>
+                </div>
+
+                <!-- Internship Info Card -->
+                <div class="internship-info mt-auto glass-panel-inner p-3 rounded-4 position-relative overflow-hidden">
+                    <div class="card-bg-gradient position-absolute top-0 start-0 w-100 h-100"
+                        style="opacity: 0.1; background: linear-gradient(135deg, var(--bs-primary), var(--bs-info)); z-index: 0;">
+                    </div>
+                    <div class="position-relative" style="z-index: 1;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar bg-primary text-white me-2"
+                                style="width: 32px; height: 32px; font-size: 0.9rem;">KR</div>
+                            <h6 class="text-primary fs-7 mb-0 fw-bold">Intern Profile</h6>
+                        </div>
+                        <div class="fs-8 text-muted profile-details">
+                            <div class="mb-1"><strong>Name:</strong> Karthick Raja B</div>
+                            <div class="mb-1"><strong>Org:</strong> CodeTech IT Solutions</div>
+                            <div class="mb-1"><strong>Domain:</strong> Python Programming</div>
+                            <div><strong>Project:</strong> AI ChatBot Assistant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1 d-flex flex-column position-relative overflow-hidden">
+
+            <!-- Floating Gradients -->
+            <div class="floating-gradient gradient-1"></div>
+            <div class="floating-gradient gradient-2"></div>
+
+            <!-- Header -->
+            <header class="chat-header d-flex align-items-center p-3 glass-header">
+                <button class="btn text-secondary d-md-none me-3" id="openSidebar">
+                    <i class="fa-solid fa-bars fs-5"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <div class="avatar bot-avatar me-3 position-relative"
+                        style="box-shadow: 0 4px 10px rgba(16, 163, 127, 0.4);">
+                        <i class="fa-solid fa-robot"></i>
+                        <span
+                            class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle online-dot">
+                            <span class="visually-hidden">Online</span>
+                        </span>
+                    </div>
+                    <div>
+                        <h5 class="m-0 fw-bold" id="viewTitle">ChatBot Assistant Pro</h5>
+                        <small class="text-success fw-medium"><i class="fa-solid fa-circle fa-2xs me-1"></i>Online -
+                            Ready to assist</small>
+                    </div>
+                </div>
+                <div class="ms-auto d-flex align-items-center gap-3">
+                    <!-- Search -->
+                    <div class="search-box d-none d-md-block view-specific chat-view-specific">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-transparent border-end-0"><i
+                                    class="fa-solid fa-search"></i></span>
+                            <input type="text" class="form-control border-start-0 ps-0" id="searchChat"
+                                placeholder="Search chat...">
+                        </div>
+                    </div>
+                    <small class="text-muted fw-medium d-none d-lg-block" id="currentDate"></small>
+                </div>
+            </header>
+
+            <!-- VIEW: CHAT -->
+            <div class="view-section active flex-grow-1 d-flex flex-column" id="view-chat" style="min-height: 0;">
+                <div class="chat-window flex-grow-1 p-3 p-md-4 overflow-y-auto custom-scrollbar position-relative"
+                    id="chatWindow" style="min-height: 0;">
+
+                    <!-- Professional Landing Section -->
+                    <div class="welcome-section text-center mx-auto mb-5" id="welcomePanel"
+                        style="max-width: 800px; padding-top: 5vh; position: relative; z-index: 2;">
+                        <div class="mb-4 welcome-avatar-container">
+                            <div class="avatar bot-avatar mx-auto mb-3 animated-pulse"
+                                style="width: 90px; height: 90px; font-size: 3rem; background: linear-gradient(135deg, #10a37f, #0d6efd);">
+                                <i class="fa-solid fa-robot text-white"></i>
+                            </div>
+                        </div>
+                        <h1 class="fw-bold mb-3 welcome-title text-gradient">Welcome to ChatBot Assistant Pro</h1>
+                        <div class="typing-effect-container mb-4 text-muted fs-5">
+                            <span id="typed-text"></span><span class="cursor">|</span>
+                        </div>
+
+                        <!-- Quick Action Cards -->
+                        <div class="container-fluid px-0 mt-5">
+                            <div class="row g-3 justify-content-center">
+                                <!-- Cards -->
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="What is Python?">
+                                        <i class="fa-brands fa-python fs-4 text-primary mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">What is Python?</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="Explain Flask">
+                                        <i class="fa-solid fa-pepper-hot fs-4 text-danger mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">Explain Flask</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="What is Machine Learning?">
+                                        <i class="fa-solid fa-network-wired fs-4 text-success mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">Machine Learning</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="What is Artificial Intelligence?">
+                                        <i class="fa-solid fa-brain fs-4 text-info mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">Artificial Intelligence</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="Explain GitHub">
+                                        <i class="fa-brands fa-github fs-4 text-secondary mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">Explain GitHub</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="What is Data Science?">
+                                        <i class="fa-solid fa-chart-pie fs-4 text-warning mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">Data Science</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="Explain OOP Concepts">
+                                        <i class="fa-solid fa-cubes fs-4 text-primary mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">OOP Concepts</h6>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="quick-action-card glass-panel-inner p-3 rounded-4 cursor-pointer h-100"
+                                        data-msg="SQL Basics">
+                                        <i class="fa-solid fa-database fs-4 text-secondary mb-2"></i>
+                                        <h6 class="fs-7 fw-bold mb-1">SQL Basics</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State Illustration (Hidden initially) -->
+                    <div id="emptyState" class="empty-state text-center mt-5 pt-5"
+                        style="display:none; position: relative; z-index: 2;">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Chat/SVG/ic_fluent_chat_48_regular.svg"
+                            class="opacity-25 mb-3" style="width: 120px; filter: invert(0.5);" alt="Empty Chat">
+                        <h4 class="text-muted fw-bold">No chat history found</h4>
+                        <p class="text-muted">Start a new conversation below!</p>
+                    </div>
+
+                    <!-- Messages will be appended here -->
+                </div>
+
+                <!-- Input Area and Footer -->
+                <div class="footer-wrapper glass-footer mt-auto position-relative" style="z-index: 3;">
+                    <div class="chat-input-area p-3 pt-4">
+                        <form id="chatForm" class="mx-auto position-relative" style="max-width: 850px;">
+                            <div class="input-group shadow-sm rounded-pill p-1 bg-input-wrapper">
+                                <input type="text" class="form-control chat-input bg-transparent border-0"
+                                    id="userInput" placeholder="Ask me anything..." autocomplete="off">
+                                <button
+                                    class="btn btn-primary send-btn rounded-circle d-flex align-items-center justify-content-center"
+                                    type="submit" id="sendBtn"
+                                    style="width: 44px; height: 44px; background: linear-gradient(135deg, #0d6efd, #10a37f); border: none;">
+                                    <i class="fa-solid fa-paper-plane ms-1"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <footer class="app-footer text-center pb-3">
+                        <div class="d-flex justify-content-center gap-3 mb-1">
+                            <span class="fs-8 text-muted"><i class="fa-brands fa-python me-1"></i>Python 3.14+</span>
+                            <span class="fs-8 text-muted"><i class="fa-solid fa-pepper-hot me-1"></i>Flask</span>
+                            <span class="fs-8 text-muted"><i class="fa-brands fa-html5 me-1"></i>HTML/CSS/JS</span>
+                        </div>
+                        <small class="text-muted fs-8 d-block">
+                            <strong>ChatBot Assistant Pro</strong> • Created for CodeTech Internship Program
+                        </small>
+                    </footer>
+                </div>
+            </div>
+
+            <!-- VIEW: ANALYTICS -->
+            <div class="view-section d-flex flex-column flex-grow-1 overflow-y-auto custom-scrollbar p-4 w-100"
+                id="view-analytics" style="min-height: 0;">
+                <h3 class="fw-bold mb-4"><i class="fa-solid fa-chart-pie text-info me-2"></i>Analytics Dashboard</h3>
+
+                <!-- Summary Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-6 col-lg-3">
+                        <div
+                            class="glass-panel-inner p-3 rounded-4 border-start border-4 border-primary shadow-sm h-100">
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Total Messages</h6>
+                            <h3 class="fw-bold mb-0" id="stat-total">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div
+                            class="glass-panel-inner p-3 rounded-4 border-start border-4 border-success shadow-sm h-100">
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">User Questions</h6>
+                            <h3 class="fw-bold mb-0" id="stat-user">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="glass-panel-inner p-3 rounded-4 border-start border-4 border-info shadow-sm h-100">
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Bot Responses</h6>
+                            <h3 class="fw-bold mb-0" id="stat-bot">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div
+                            class="glass-panel-inner p-3 rounded-4 border-start border-4 border-warning shadow-sm h-100">
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Most Asked Topic</h6>
+                            <h5 class="fw-bold mb-0 text-truncate" id="stat-topic">None</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Stats -->
+                <div class="row g-4 mb-5">
+                    <div class="col-sm-4">
+                        <div class="glass-panel-inner p-3 rounded-4 text-center">
+                            <i class="fa-solid fa-desktop text-secondary fs-3 mb-2"></i>
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Chat Sessions</h6>
+                            <h4 class="fw-bold mb-0" id="stat-sessions">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="glass-panel-inner p-3 rounded-4 text-center">
+                            <i class="fa-solid fa-file-export text-secondary fs-3 mb-2"></i>
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Export Count</h6>
+                            <h4 class="fw-bold mb-0" id="stat-exports">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="glass-panel-inner p-3 rounded-4 text-center">
+                            <i class="fa-solid fa-clock text-secondary fs-3 mb-2"></i>
+                            <h6 class="text-muted fs-8 text-uppercase fw-bold">Last Active</h6>
+                            <h4 class="fw-bold mb-0 fs-6" id="stat-active">Never</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-8">
+                        <div class="glass-panel-inner p-4 rounded-4 h-100">
+                            <h6 class="fw-bold mb-4">Message Trends (Last 7 Days)</h6>
+                            <canvas id="trendChart" height="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="glass-panel-inner p-4 rounded-4 h-100">
+                            <h6 class="fw-bold mb-4">Top Topics</h6>
+                            <canvas id="topicChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: EXPORT CENTER -->
+            <div class="view-section d-flex flex-column flex-grow-1 overflow-y-auto custom-scrollbar p-4 w-100"
+                id="view-export" style="min-height: 0;">
+                <h3 class="fw-bold mb-4"><i class="fa-solid fa-file-export text-success me-2"></i>Export Center</h3>
+                <p class="text-muted mb-4">Download your conversation history and platform statistics in various formats
+                    for backup or analysis.</p>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="glass-panel-inner p-4 rounded-4 text-center h-100 hover-card">
+                            <i class="fa-solid fa-file-lines text-primary"
+                                style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h5 class="fw-bold">Export as TXT</h5>
+                            <p class="text-muted fs-7">Download a human-readable text file of all conversations.</p>
+                            <button class="btn btn-primary mt-2 px-4 rounded-pill" id="btnExportTxt"><i
+                                    class="fa-solid fa-download me-2"></i>Download TXT</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-panel-inner p-4 rounded-4 text-center h-100 hover-card">
+                            <i class="fa-solid fa-file-code text-info"
+                                style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h5 class="fw-bold">Export as JSON</h5>
+                            <p class="text-muted fs-7">Download raw JSON data containing timestamps and messages.</p>
+                            <button class="btn btn-info text-white mt-2 px-4 rounded-pill" id="btnExportJson"><i
+                                    class="fa-solid fa-download me-2"></i>Download JSON</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-panel-inner p-4 rounded-4 text-center h-100 hover-card">
+                            <i class="fa-solid fa-chart-bar text-warning"
+                                style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h5 class="fw-bold">Export Statistics</h5>
+                            <p class="text-muted fs-7">Download platform analytics and topic frequency data.</p>
+                            <button class="btn btn-warning mt-2 px-4 rounded-pill" id="btnExportStats"><i
+                                    class="fa-solid fa-download me-2"></i>Download Stats</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-panel-inner border-0">
+                <div class="modal-header border-bottom border-secondary-subtle">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-circle-info text-primary me-2"></i>About
+                        Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>ChatBot Assistant Pro</strong> is a premium, portfolio-quality AI conversational web
+                        application.</p>
+
+                    <h6 class="fw-bold mt-3 text-primary">Project Objective</h6>
+                    <p class="fs-7 text-muted">To build a high-performance, Python 3.14 compatible, NLP intent-matching
+                        assistant suitable for a professional internship submission.</p>
+
+                    <h6 class="fw-bold mt-3 text-primary">Technologies Used</h6>
+                    <ul class="fs-7 text-muted">
+                        <li>Python, Flask, Werkzeug</li>
+                        <li>Vanilla JS, Chart.js</li>
+                        <li>HTML5, CSS3, Bootstrap 5</li>
+                        <li>JSON local storage</li>
+                    </ul>
+
+                    <h6 class="fw-bold mt-3 text-primary">Internship Purpose</h6>
+                    <p class="fs-7 text-muted mb-0">Developed by Karthick Raja B for the CodeTech IT Solutions
+                        Internship Program under the Python Programming domain.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Is anyone there?",
+        "Hi there",
+        "Greetings",
+        "What's up"
+      ],
+      "responses": [
+        "Hello! How can I help you today?",
+        "Hi there! I'm ChatBot Assistant Pro. What can I do for you?",
+        "Greetings! How may I assist you?",
+        "Good day! What's on your mind?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "Catch you later",
+        "I am leaving",
+        "Have a good day",
+        "Bye bye"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "See you later! Feel free to ask if you need more help.",
+        "Bye! Take care.",
+        "Farewell! Looking forward to chatting again."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Awesome, thanks",
+        "Thanks for helping me",
+        "I appreciate it"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Anytime!",
+        "Glad I could help!",
+        "It's my pleasure."
+      ]
+    },
+    {
+      "tag": "identity",
+      "patterns": [
+        "Who are you?",
+        "What is your name?",
+        "Are you a human?",
+        "What are you?",
+        "Tell me about yourself"
+      ],
+      "responses": [
+        "I am ChatBot Assistant Pro, an AI-powered conversational agent created as an internship project by Karthick Raja B at CODTECH IT SOLUTIONS.",
+        "My name is ChatBot Assistant Pro. I'm a virtual assistant designed to answer your questions and help you out!",
+        "I'm an AI chatbot built using Python and Flask. You can call me ChatBot Assistant Pro."
+      ]
+    },
+    {
+      "tag": "creator",
+      "patterns": [
+        "Who created you?",
+        "Who is your developer?",
+        "Who made you?",
+        "Who is Karthick Raja B?"
+      ],
+      "responses": [
+        "I was created by Karthick Raja B during an internship at CODTECH IT SOLUTIONS in the domain of Python Programming.",
+        "Karthick Raja B is my developer. He built me as part of his CODTECH IT SOLUTIONS internship project!"
+      ]
+    },
+    {
+      "tag": "python",
+      "patterns": [
+        "What is Python?",
+        "Tell me about Python",
+        "Why should I learn Python?",
+        "What is Python used for?",
+        "Explain Python"
+      ],
+      "responses": [
+        "Python is a high-level, interpreted programming language known for its readability and versatility. It is widely used for web development, data science, AI, machine learning, and automation."
+      ]
+    },
+    {
+      "tag": "python_frameworks",
+      "patterns": [
+        "What are some Python web frameworks?",
+        "Tell me about Flask",
+        "Tell me about Django",
+        "Flask vs Django",
+        "Explain Flask"
+      ],
+      "responses": [
+        "Flask is a lightweight micro-framework for Python, while Django is a full-stack framework. Flask is easy to learn and flexible, which is why I am built using it!"
+      ]
+    },
+    {
+      "tag": "ai",
+      "patterns": [
+        "What is AI?",
+        "Define Artificial Intelligence",
+        "What is Artificial Intelligence?",
+        "Tell me about AI"
+      ],
+      "responses": [
+        "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions."
+      ]
+    },
+    {
+      "tag": "ml",
+      "patterns": [
+        "What is Machine Learning?",
+        "Machine Learning",
+        "Define Machine Learning",
+        "How does Machine Learning work?"
+      ],
+      "responses": [
+        "Machine Learning (ML) is a subset of AI that involves training algorithms to learn patterns from data and make predictions or decisions without being explicitly programmed."
+      ]
+    },
+    {
+      "tag": "data_science",
+      "patterns": [
+        "What is Data Science?",
+        "Data Science",
+        "Define Data Science",
+        "What does a data scientist do?"
+      ],
+      "responses": [
+        "Data Science is an interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data."
+      ]
+    },
+    {
+      "tag": "html",
+      "patterns": [
+        "What is HTML?",
+        "HTML Basics",
+        "Define HTML",
+        "Tell me about HTML"
+      ],
+      "responses": [
+        "HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It defines the structure and content of web pages."
+      ]
+    },
+    {
+      "tag": "css",
+      "patterns": [
+        "What is CSS?",
+        "CSS Basics",
+        "Define CSS",
+        "Tell me about CSS"
+      ],
+      "responses": [
+        "CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML. It controls the layout, colors, and fonts."
+      ]
+    },
+    {
+      "tag": "javascript",
+      "patterns": [
+        "What is JavaScript?",
+        "JavaScript",
+        "Define JavaScript",
+        "Tell me about JavaScript"
+      ],
+      "responses": [
+        "JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It enables interactive web pages and is an essential part of web applications."
+      ]
+    },
+    {
+      "tag": "sql",
+      "patterns": [
+        "What is SQL?",
+        "Database Concepts",
+        "Define SQL",
+        "Tell me about databases"
+      ],
+      "responses": [
+        "SQL (Structured Query Language) is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS)."
+      ]
+    },
+    {
+      "tag": "oop",
+      "patterns": [
+        "What is OOP?",
+        "OOP Concepts",
+        "Object Oriented Programming",
+        "Tell me about OOP"
+      ],
+      "responses": [
+        "Object-Oriented Programming (OOP) is a programming paradigm based on the concept of 'objects', which can contain data and code. Core concepts include encapsulation, abstraction, inheritance, and polymorphism."
+      ]
+    },
+    {
+      "tag": "cyber_security",
+      "patterns": [
+        "What is Cyber Security?",
+        "Cyber Security",
+        "Information Security",
+        "Tell me about hacking"
+      ],
+      "responses": [
+        "Cyber Security is the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information."
+      ]
+    },
+    {
+      "tag": "cloud_computing",
+      "patterns": [
+        "What is Cloud Computing?",
+        "Cloud Computing",
+        "AWS",
+        "Azure"
+      ],
+      "responses": [
+        "Cloud Computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ('the cloud') to offer faster innovation, flexible resources, and economies of scale."
+      ]
+    },
+    {
+      "tag": "git",
+      "patterns": [
+        "What is Git?",
+        "Git and GitHub",
+        "Version Control",
+        "Tell me about Git"
+      ],
+      "responses": [
+        "Git is a free and open-source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. GitHub is a platform that hosts Git repositories."
+      ]
+    },
+    {
+      "tag": "software_engineering",
+      "patterns": [
+        "What is Software Engineering?",
+        "Software Engineering",
+        "SDLC",
+        "Software Development Life Cycle"
+      ],
+      "responses": [
+        "Software Engineering is the systematic application of engineering approaches to the development of software. It involves requirements gathering, design, coding, testing, and maintenance."
+      ]
+    },
+    {
+      "tag": "internship",
+      "patterns": [
+        "Tell me about CODTECH IT SOLUTIONS",
+        "What is this internship?",
+        "Tell me about the internship project",
+        "Codtech internship"
+      ],
+      "responses": [
+        "This project is 'ChatBot Assistant Pro', developed as an internship task for CODTECH IT SOLUTIONS in the domain of Python Programming by Karthick Raja B."
+      ]
+    },
+    {
+      "tag": "general_help",
+      "patterns": [
+        "Help",
+        "What can you do?",
+        "What are your features?",
+        "How can you assist me?",
+        "Capabilities"
+      ],
+      "responses": [
+        "I can answer questions about Python, AI, Machine Learning, Data Science, Web Development, provide details about my creator, or just chat with you. What would you like to know?"
+      ]
+    },
+    {
+      "tag": "capabilities_action",
+      "patterns": [
+        "Can you export chat?",
+        "How do I save the chat?",
+        "Chat history",
+        "Search chat"
+      ],
+      "responses": [
+        "Yes! You can use the buttons in the sidebar to export our chat history to a text or JSON file, clear the conversation, or toggle dark/light mode. You can also search through our messages using the search bar."
+      ]
+    },
+    {
+      "tag": "web_development",
+      "patterns": [
+        "What is web development?",
+        "Tell me about web development",
+        "Frontend vs backend"
+      ],
+      "responses": [
+        "Web development is the work involved in developing a website for the Internet. It ranges from developing simple single static pages to complex web applications. It typically involves frontend (UI/UX) and backend (server/database) development."
+      ]
+    },
+    {
+      "tag": "api",
+      "patterns": [
+        "What is an API?",
+        "Explain API",
+        "Define API"
+      ],
+      "responses": [
+        "API stands for Application Programming Interface. It is a set of rules and protocols that allows different software applications to communicate with each other."
+      ]
+    },
+    {
+      "tag": "json",
+      "patterns": [
+        "What is JSON?",
+        "Explain JSON",
+        "JSON format"
+      ],
+      "responses": [
+        "JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate."
+      ]
+    },
+    {
+      "tag": "agile",
+      "patterns": [
+        "What is Agile?",
+        "Agile methodology",
+        "Explain Agile"
+      ],
+      "responses": [
+        "Agile is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches."
+      ]
+    },
+    {
+      "tag": "devops",
+      "patterns": [
+        "What is DevOps?",
+        "Explain DevOps"
+      ],
+      "responses": [
+        "DevOps is a set of practices that combines software development (Dev) and IT operations (Ops). It aims to shorten the systems development life cycle and provide continuous delivery with high software quality."
+      ]
+    },
+    {
+      "tag": "big_data",
+      "patterns": [
+        "What is Big Data?",
+        "Explain Big Data"
+      ],
+      "responses": [
+        "Big data refers to data sets that are too large or complex to be dealt with by traditional data-processing application software. Data with many fields offer greater statistical power, while data with higher complexity may lead to a higher false discovery rate."
+      ]
+    },
+    {
+      "tag": "blockchain",
+      "patterns": [
+        "What is Blockchain?",
+        "Explain Blockchain"
+      ],
+      "responses": [
+        "A blockchain is a growing list of records, called blocks, that are linked using cryptography. Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data."
+      ]
+    },
+    {
+      "tag": "iot",
+      "patterns": [
+        "What is IoT?",
+        "Internet of Things",
+        "Explain IoT"
+      ],
+      "responses": [
+        "The Internet of Things (IoT) describes physical objects that are embedded with sensors, processing ability, software, and other technologies, and that connect and exchange data with other devices and systems over the Internet or other communications networks."
+      ]
+    }
+  ]
+}

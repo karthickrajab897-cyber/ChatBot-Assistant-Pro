@@ -1,6 +1,7 @@
 # ChatBot Assistant Pro
 
-![Dashboard Screenshot](screenshots/1_Dashboard.png) <!-- 1. Dashboard Screenshot -->
+![Dashboard Screenshot](screenshots/1_Dashboard.png)
+![Chat Interface Screenshot](screenshots/2_ChatInterface.png)
 
 ## Project Overview
 ChatBot Assistant Pro is a premium, portfolio-quality AI conversational web platform developed using Python, Flask, and a custom high-performance NLP intent-matching engine. 
